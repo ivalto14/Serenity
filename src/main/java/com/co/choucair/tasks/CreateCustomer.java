@@ -21,35 +21,43 @@ public class CreateCustomer implements Task {
     private String company;
     private String containerName;
     private String containerTitle;
+    private String representative;
     private String address;
+    private String country;
+    private String city;
     private String region;
     private String postal;
     private String phone;
     private String fax;
     private String lastDate;
+    private String last;
     private String email;
 
-    public CreateCustomer(String company, String containerName, String containerTitle,
-                          String address, String region, String postal, String phone,
-                          String fax, String lastDate, String email) {
+    public CreateCustomer(String company, String containerName, String containerTitle, String representative,
+                          String address,String country, String city, String region, String postal, String phone,
+                          String fax, String lastDate,String last, String email) {
         this.id = "";
         this.company = company;
         this.containerName = containerName;
         this.containerTitle = containerTitle;
+        this.representative = representative;
         this.address = address;
+        this.country = country;
+        this.city = city;
         this.region = region;
         this.postal = postal;
         this.phone = phone;
         this.fax = fax;
         this.lastDate = lastDate;
+        this.last = last;
         this.email = email;
     }
 
-    public static CreateCustomer withDetails(String company, String containerName, String containerTitle,
-                                             String address, String region, String postal, String phone,
-                                             String fax, String lastDate, String email) {
-        return instrumented(CreateCustomer.class, company, containerName, containerTitle, address, region,
-                postal, phone, fax, lastDate, email);
+    public static CreateCustomer withDetails(String company, String containerName, String containerTitle, String representative,
+                                             String address, String country, String city, String region, String postal, String phone,
+                                             String fax, String lastDate,String last, String email) {
+        return instrumented(CreateCustomer.class, company, containerName, containerTitle, representative, address, country, city, region,
+                postal, phone, fax, lastDate,last, email);
     }
 
 
@@ -77,20 +85,21 @@ public class CreateCustomer implements Task {
                 Enter.theValue(company).into(TXT_COMPANY),
                 Enter.theValue(containerName).into(TXT_CONT_NAME),
                 Enter.theValue(containerTitle).into(TXT_CONT_TITLE),
-                Enter.theValue("Janet").into(LABEL_REPRESENTATIVES),
+                Enter.theValue(representative).into(LABEL_REPRESENTATIVES),
                 PressEnterKey.pressEnter(),
                 Enter.theValue(address).into(CustomerPage.TXT_ADDRESS),
-                Enter.theValue("Argentina").into(LABEL_COUNTRY),
+                Enter.theValue(country).into(LABEL_COUNTRY),
                 PressArrowDownKey.pressArrowDown(),
                 PressEnterKey.pressEnter(),
-                Enter.theValue("Buenos Aires").into(LABEL_CITY),
+                Enter.theValue(city).into(LABEL_CITY),
+                PressArrowDownKey.pressArrowDown(),
                 PressEnterKey.pressEnter(),
                 Enter.theValue(region).into(CustomerPage.TXT_REGION),
                 Enter.theValue(postal).into(CustomerPage.TXT_POSTAL),
                 Enter.theValue(phone).into(CustomerPage.TXT_PHONE),
                 Enter.theValue(fax).into(CustomerPage.TXT_FAX),
                 Enter.theValue(lastDate).into(CustomerPage.TXT_LAST_DATE),
-                Enter.theValue("Janet").into(LABEL_LAST),
+                Enter.theValue(last).into(LABEL_LAST),
                 PressEnterKey.pressEnter(),
                 Enter.theValue(email).into(CustomerPage.TXT_EMAIL),
                 Click.on(CustomerPage.BTN_SAVE)

@@ -44,5 +44,7 @@ public class CustomerPage {
             .locatedBy("//div[@class='slick-cell l0 r0']/a[@data-item-id='{0}']");
     public static final Target RESUL_CONT_NAME = Target.the("Resulting customer name field")
             .locatedBy("//input[contains(@id, 'Serenity_Demo_Northwind_CustomerDialog') and @name='ContactName']");
+    public static final Target TOOLTIP_MESSAGE = Target.the("Tooltip message field")
+            .locatedBy("//div[contains(@class, 'tooltip') and contains(@class, 'show')]//div[@class='tooltip-inner']");
 }
 
