@@ -7,13 +7,7 @@ import com.co.choucair.userinterfaces.CustomerPage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-
 import java.util.List;
-
-import static com.co.choucair.userinterfaces.CustomerPage.RESUL_CONT_NAME;
-import static com.co.choucair.userinterfaces.DashboardPage.TXT_CLIENTS;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -27,40 +21,34 @@ public class CreateCustomerStepDefinitions {
         String company = data.get(0).get(0);
         String containerName = data.get(0).get(1);
         String containerTitle = data.get(0).get(2);
-        String address = data.get(0).get(3);
-        String region = data.get(0).get(4);
-        String postal = data.get(0).get(5);
-        String phone = data.get(0).get(6);
-        String fax = data.get(0).get(7);
-        String lastDate = data.get(0).get(8);
-        String email = data.get(0).get(9);
+        String representative = data.get(0).get(3);
+        String address = data.get(0).get(4);
+        String country = data.get(0).get(5);
+        String city = data.get(0).get(6);
+        String region = data.get(0).get(7);
+        String postal = data.get(0).get(8);
+        String phone = data.get(0).get(9);
+        String fax = data.get(0).get(10);
+        String lastDate = data.get(0).get(11);
+        String last = data.get(0).get(12);
+        String email = data.get(0).get(13); // Ejecutar la tarea para crear el cliente
 
-        // Ejecutar la tarea para crear el cliente
-        theActorInTheSpotlight().attemptsTo(CreateCustomer.withDetails(
-                company, containerName, containerTitle, address, region,
-                postal, phone, fax, lastDate, email));
+        theActorInTheSpotlight().attemptsTo(CreateCustomer.withDetails( company, containerName, containerTitle, representative, address,
+                country, city, region, postal, phone, fax, lastDate,last, email));
     }
 
     @And("the customer should be created successfully")
     public void theCustomerShouldBeCreatedSuccessfully() {
         String idClient = theActorInTheSpotlight().recall("usuarioID");
-        theActorInTheSpotlight().attemptsTo(
-                SearchCustomer.inTheModule(idClient)
-        );
-
+        theActorInTheSpotlight().attemptsTo( SearchCustomer.inTheModule(idClient) );
         System.out.println("Cliente creado y guardado exitosamente.");
     }
 
     @Then("the customer's name should be correctly displayed")
-    public void validateCustomerName() {
-        String expectedName = "Jane Smith"; // Nombre esperado
-
-        theActorInTheSpotlight().should(
-                seeThat(ValidateText.in(CustomerPage.RESUL_CONT_NAME), containsString(expectedName))
-        );
+    public void validateCustomerName(DataTable dataTable) {
+        List<List<String>> data = dataTable.asLists(String.class);
+        String expectedName = data.get(0).get(0);
+        theActorInTheSpotlight().should( seeThat(ValidateText.in(CustomerPage.RESUL_CONT_NAME),
+                containsString(expectedName)) );
     }
-
 }
-
-
-
