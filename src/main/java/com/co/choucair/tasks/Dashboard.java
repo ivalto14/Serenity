@@ -33,6 +33,15 @@ public class Dashboard implements Task {
                         .forNoMoreThan(10).seconds(),
                 Click.on(DashboardPage.ADMINISTRATION),
                 WaitUntil.the(DashboardPage.TXT_ADMINISTRATION, WebElementStateMatchers.isVisible())
+                        .forNoMoreThan(10).seconds(),
+                Click.on(DashboardPage.LANGUAGE),
+                WaitUntil.the(DashboardPage.LANGUAGE_UNO, WebElementStateMatchers.isVisible())
+                        .forNoMoreThan(10).seconds(),
+                Click.on(DashboardPage.SWITCH_THEME),
+                WaitUntil.the(DashboardPage.COSMOS, WebElementStateMatchers.isVisible())
+                        .forNoMoreThan(10).seconds(),
+                Click.on(DashboardPage.ADMIN),
+                WaitUntil.the(DashboardPage.LOGOUT, WebElementStateMatchers.isVisible())
                         .forNoMoreThan(10).seconds()
         );
     }
