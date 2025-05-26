@@ -10,4 +10,6 @@ public class LoginPage {
             .located(By.xpath("//*[@id='LoginPanel0_Password']\n"));
     public static final Target BTN_SUBMIT = Target.the("SUBMIT")
             .located(By.xpath("//*[@id='LoginPanel0_LoginButton']\n"));
+    public static final Target ERROR_MESSAGE = Target.the("Invalid login error message")
+            .locatedBy("//div[contains(@class, 'toast') and contains(@class, 'toast-error')]//div[@class='toast-message']");
 }

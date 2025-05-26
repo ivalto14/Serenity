@@ -1,13 +1,16 @@
 package com.co.choucair.stepdefinitions;
 
+import com.co.choucair.questions.ValidateErrorMessage;
 import com.co.choucair.tasks.OpenLoginPage;
 import com.co.choucair.tasks.Login;
 import com.co.choucair.utils.KillBrowser;
+import com.co.choucair.userinterfaces.LoginPage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.thucydides.core.webdriver.SerenityWebdriverManager;
@@ -17,6 +20,7 @@ import java.util.List;
 
 import static com.co.choucair.utils.GlobalData.ACTOR;
 import static com.co.choucair.utils.GlobalData.URL;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class SerenityLoginStepDefinitions {
@@ -40,6 +44,13 @@ public class SerenityLoginStepDefinitions {
 
         theActorInTheSpotlight().attemptsTo(
                 Login.withCredentials(username, password));
+    }
+
+    @Then("the system should display an error message {string}")
+    public void theSystemShouldDisplayAnErrorMessage(String expectedErrorMessage) {
+        theActorInTheSpotlight().should(
+                seeThat(ValidateErrorMessage.isVisibleWithText(expectedErrorMessage))
+        );
     }
 
     @After
