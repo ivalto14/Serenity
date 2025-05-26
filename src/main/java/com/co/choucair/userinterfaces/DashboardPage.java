@@ -22,5 +22,17 @@ public class DashboardPage {
             .located(By.xpath("//h3[@class='card-title' and text()='Orders']"));
     public static final Target SEARCH_CUSTOMER = Target.the("Customer search input")
             .locatedBy("//input[@id='Serenity_Demo_Norhtwind_CustomerGrid0_QuickSearchInput']");
+    public static final Target LANGUAGE = Target.the("Language switcher")
+            .located(By.xpath("//a[@class='s-sidebar-band-link s-language-selection-link' and @data-bs-toggle='dropdown']"));
+    public static final Target SWITCH_THEME = Target.the("Theme switcher")
+            .located(By.xpath("//a[@class='s-sidebar-band-link s-theme-selection-link' and @data-bs-toggle='dropdown']"));
+    public static final Target ADMIN = Target.the("Admin profile dropdown")
+            .located(By.xpath("//a[contains(@class, 's-sidebar-band-link') and contains(@class, 's-user-profile-link') and @data-bs-toggle='dropdown']"));
+    public static final Target LANGUAGE_UNO = Target.the("English language selector")
+            .located(By.xpath("//a[@class='dropdown-item' and @data-language='en']"));
+    public static final Target COSMOS = Target.the("Cosmos dark theme selector")
+            .located(By.xpath("//a[@class='dropdown-item' and @data-theme='cosmos-dark']"));
+    public static final Target LOGOUT = Target.the("Logout button")
+            .located(By.xpath("//a[@class='dropdown-item' and @href='/Account/Signout']"));
 
 }

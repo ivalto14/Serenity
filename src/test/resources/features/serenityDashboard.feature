@@ -5,4 +5,4 @@ Feature: Serenity Dashboard Navigation
     When the user attempts to log in with credentials
       | admin   | serenity |
     And the user navigates through the dashboard
-    Then the user should see the Administration section
+    Then the user should see all the dashboard sections
